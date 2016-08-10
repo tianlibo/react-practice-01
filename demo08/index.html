@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <script type="text/babel">
+      var Box = React.createClass({ 
+        getDefaultProps: function() {
+           return {
+              colorIndex: -1
+           }
+        },
+        getInitialState: function(){
+          return {
+            backgroundColor: "blue",
+            height:200,
+            width:200,
+          }
+        },
+        update: function() {
+          // this.setProps({colorIndex: this.props.colorIndex + 1 });
+        },
+        componentWillReceiveProps: function(nextProps) {
+            var color = this.props.colors.split(',')[nextProps.colorIndex]; 
+            if(!color) {this.setProps({colorIndex: 0})}
+            this.setState({backgroundColor: color});
+        },
+        render: function() {
+            return  <div style={this.state} onClick={this.update}></div>;
+        }
+      });
+
+      ReactDOM.render(<Box colors="Red, DarkMagenta, Salmon, Chartreuse"/>, document.body);
+    </script>
+  </body>
+</html>
+

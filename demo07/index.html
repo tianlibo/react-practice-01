@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet"> 
+  </head>
+  <body>
+    <script type="text/babel">
+      var Box = React.createClass({
+        componentWillMount: function(){
+          alert("component is about to mount");
+        },
+        componentDidMount: function() {
+          alert("component did mount ")
+        },
+        render: function() {
+            return <div className = "note"></div>;
+        }
+      });
+
+      ReactDOM.render(<Box />, document.body);
+
+      var getRidOfBox = document.getElementsByTagName('div')[0];
+      getRidOfBox.onclick = function() {
+        ReactDOM.unmountComponentAtNode(document.body);
+        alert("component is unmountComponentAtNode");
+      }
+    </script>
+  </body>
+</html>
